@@ -1,0 +1,40 @@
+﻿@model ProductDetailViewModel
+
+
+<div class="card mb-3 mt-3" style="max-width: 2000px;">
+    <div class="row g-0">
+        <div class="col-md-6 col-12 mx-auto">
+            @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+            {
+                <img src="~/Images/Products/@Model.ImagePath" class="img-fluid rounded-start" alt="...">
+            }
+            else
+            {
+                <img src="~/Images/NoImage.jpg" class="img-fluid rounded-start" alt="...">
+            }
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <h1 class="card-title">@Model.Name</h1>
+                <p class="card-text" style="font-size:large">@Model.Description</p>
+                <p class="card-text fw-bold" style="color:darkred; font-size:x-large">Günlük @Model.UnitPrice TL</p>
+                @if (Model.IsSoldOut)
+                {
+                    <div class="alert alert-danger mt-2">
+                        @Model.SoldingOutMessage
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.SoldingOutMessage) && Model.IsSoldOut == false)
+                {
+                    <div class="alert alert-warning mt-2">
+                        @Model.SoldingOutMessage
+                    </div>
+                }
+                <button class="btn btn-success left" onclick="location.href='@Url.Action("Index", "Home", new { categoryId = "", categoryName = "" })'" style="width: 150px; height: 50px; font-size: large;">Geri Dön</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

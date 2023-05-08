@@ -1,0 +1,68 @@
+﻿@using RentACar.WebUI.Extensions;
+@model List<ProductViewModel>
+
+<div class="row">
+
+    @if (Model.Any())
+    {
+
+
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-12 col-md-3 col-lg-4 col-xl-3  mb-3">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-header" style="width:100%">
+
+                        @if (!string.IsNullOrWhiteSpace(item.ImagePath))
+                        {
+                            <img style="width:100%; height:225px" src="~/Images/Products/@item.ImagePath" />
+
+                        }
+                        else
+                        {
+                            <img style="width:100%; height:225px" src="~/Images/NoImage.jpg" />
+                        }
+
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text fw-bold">@item.Name</p>
+                        <p class="card-text fw-bold" style="color:darkred">@item.UnitPrice TL</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            @if (User.IsLogged())
+                            {
+                                <div class="btn-group">
+                                    <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-success">İncele</a>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+
+    }
+    else
+    {
+        <div class="alert alert-danger fw-bold">
+
+            Araç Bulunamadı!
+
+        </div>
+    }
+
+
+    
+</div>
+<div class="link-container">
+
+<a href="#" onclick="scrollToTop()">Sayfa Başına Dön</a>
+
+</div>

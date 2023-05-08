@@ -1,0 +1,28 @@
+﻿@using RentACar.WebUI.Extensions;
+
+@if (!User.IsLogged())
+{
+     <partial name="_BannerPartial"></partial>
+}
+   
+
+else
+{
+    
+    <div class="row">
+    <h3>En Uygun Araçlar</h3>
+    <div class="col-9">
+
+        <vc:categories></vc:categories>
+       @* <vc:products></vc:products>*@
+    </div>
+
+    <div class="col-12">
+
+        <vc:products category-id="@ViewBag.CategoryId"></vc:products>
+
+    </div>
+
+</div>
+}
+
